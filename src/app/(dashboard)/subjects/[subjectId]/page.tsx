@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { CheckCircle2, Circle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { TopicCompletionAction } from "@/components/mentor/topic-completion-action";
 import { Progress } from "@/components/ui/progress";
 import { gateSubjects } from "@/lib/constants";
 
@@ -118,6 +119,13 @@ export default async function SubjectPage({ params }: SubjectPageProps) {
                 </div>
               </div>
               <Progress value={topic.progress} />
+              <div className="flex justify-end">
+                <TopicCompletionAction
+                  subject={subject.name}
+                  topic={topic.name}
+                  missedTasks={2}
+                />
+              </div>
             </CardContent>
           </Card>
         ))}

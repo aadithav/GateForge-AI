@@ -152,6 +152,17 @@ create table public.mentor_recommendations (
   user_id uuid not null references public.profiles(id) on delete cascade,
   topic_id uuid references public.topics(id) on delete set null,
   recommendation_type text not null,
+  subject_name text,
+  topic_name text,
+  revision_schedule jsonb not null default '{}'::jsonb,
+  dsa_recommendations jsonb not null default '[]'::jsonb,
+  project_recommendation jsonb not null default '{}'::jsonb,
+  github_plan jsonb not null default '{}'::jsonb,
+  resume_bullets jsonb not null default '[]'::jsonb,
+  linkedin_post text,
+  next_topic text,
+  recovery_plan jsonb not null default '[]'::jsonb,
+  analytics jsonb not null default '{}'::jsonb,
   payload jsonb not null,
   created_at timestamptz not null default now()
 );

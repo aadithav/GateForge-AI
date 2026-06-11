@@ -2,7 +2,8 @@
 
 import { create } from "zustand";
 import { clamp } from "@/lib/utils";
-import { revisionQueue, todayTasks } from "@/lib/constants";
+import { gateSubjects, revisionQueue, todayTasks } from "@/lib/constants";
+import { useMentorStore } from "@/store/mentor-store";
 import type { RevisionItem, RevisionStage, StudyTask, TaskStatus } from "@/types/study";
 
 const nextRevisionStage: Record<RevisionStage, RevisionStage | null> = {
@@ -54,6 +55,22 @@ export const useStudyStore = create<StudyState>((set) => ({
       const completedTask = tasks.find(
         (task) => task.id === taskId && task.status === "completed",
       );
+      if (completedTask?.subjectId && completedTask.topicId) {
+        const subject = gateSubjects.find(
+          (item) => item.id === completedTask.subjectId,
+        );
+        const topic = subject?.topics.find(
+          (item) => item.id === completedTask.topicId,
+        );
+        if (subject && topic) {
+          useMentorStore.getState().generateFromCompletion({
+            subject: subject.name,
+            topic: topic.name,
+            missedTasks: state.tasks.filter((task) => task.status === "missed")
+              .length,
+          });
+        }
+      }
       const newRevision =
         completedTask?.mode === "revision" && completedTask.revisionStage
           ? nextRevisionStage[completedTask.revisionStage]

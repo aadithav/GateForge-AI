@@ -6,6 +6,7 @@ import { MetricCard } from "@/components/dashboard/metric-card";
 import { ProgressChart } from "@/components/dashboard/progress-chart";
 import { SubjectProgress } from "@/components/dashboard/subject-progress";
 import { TodayTasks } from "@/components/dashboard/today-tasks";
+import { MentorDashboardCard } from "@/components/mentor/mentor-dashboard-card";
 import { StudyEngineSummary } from "@/components/study/study-engine-summary";
 import { RevisionSystem } from "@/components/study/revision-system";
 import { Badge } from "@/components/ui/badge";
@@ -118,6 +119,7 @@ export default function DashboardPage() {
               </p>
             </CardContent>
           </Card>
+          <MentorDashboardCard />
         </div>
       </section>
     </div>
