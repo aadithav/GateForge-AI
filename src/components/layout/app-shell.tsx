@@ -3,7 +3,7 @@ import { Sidebar } from "@/components/layout/sidebar";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-dvh bg-slate-950 text-slate-100">
+    <div className="min-h-dvh bg-[#F8F9FA] text-[#212529]">
       <MobileNav />
       <div className="flex">
         <Sidebar />

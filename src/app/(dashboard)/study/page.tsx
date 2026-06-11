@@ -1,22 +1,17 @@
-import { DailyPlanner } from "@/components/study/daily-planner";
-import { RevisionSystem } from "@/components/study/revision-system";
-import { StudyEngineSummary } from "@/components/study/study-engine-summary";
+import { GateSubjectTree } from "@/components/focus/gate-subject-tree";
+import { TodayTopic } from "@/components/focus/today-topic";
+import { TodaysMission } from "@/components/focus/todays-mission";
 
 export default function StudyPage() {
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
-      <h2 className="text-3xl font-semibold tracking-tight text-white">
-        Study Engine
-      </h2>
-      <p className="mt-2 text-sm text-slate-400">
-        Daily generated work, missed-task recovery, spaced revision, and strict
-        execution pressure live here.
-      </p>
-      <StudyEngineSummary />
-      <section className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
-        <DailyPlanner />
-        <RevisionSystem />
-      </section>
+    <div className="mx-auto grid w-full max-w-7xl gap-6 px-4 py-6 sm:px-6 lg:grid-cols-[18rem_1fr] lg:px-8">
+      <aside className="hidden lg:block">
+        <GateSubjectTree />
+      </aside>
+      <main className="space-y-6">
+        <TodaysMission />
+        <TodayTopic />
+      </main>
     </div>
   );
 }
